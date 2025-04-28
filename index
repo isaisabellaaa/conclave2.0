@@ -40,34 +40,66 @@
 
         /* Botones de idioma */
         .language-button {
-            background-color: #008CBA;
-            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: #ffffff;
             border: none;
-            padding: 10px;
-            margin: 5px;
-            border-radius: 4px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s ease;
         }
 
         .language-button:hover {
-            background-color: #005f6b;
+            background-color: #0056b3;
         }
 
         /* Contenedor de candidatos */
         .candidate-container {
             display: flex;
             flex-direction: column;
-            gap: 10px;
         }
 
-        /* Resultados de candidatos */
+        .candidate {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .candidate:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Estilo para el resultado del candidato */
         .candidate-result {
             margin-top: 20px;
             padding: 10px;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .candidate-result.show {
+            display: block;
+            opacity: 1;
+        }
+
+        /* Responsividad */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .left-column, .right-column {
+                padding: 10px;
+            }
         }
     </style>
 </head>
@@ -83,9 +115,9 @@
         <!-- Contenido de la derecha -->
         <div class="right-column">
             <div class="candidate-container">
-                <div class="candidate">Candidato 1</div>
-                <div class="candidate">Candidato 2</div>
-                <div class="candidate">Candidato 3</div>
+                <div class="candidate" data-candidate="1">Candidato 1</div>
+                <div class="candidate" data-candidate="2">Candidato 2</div>
+                <div class="candidate" data-candidate="3">Candidato 3</div>
             </div>
             <div class="candidate-result"></div>
         </div>
@@ -93,24 +125,50 @@
 
     <!-- Script JS integrado -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const languageButtons = document.querySelectorAll('.language-button');
-            const candidates = document.querySelectorAll('.candidate');
-            const resultDiv = document.querySelector('.candidate-result');
-            
-            // Evento para cambiar el idioma
-            languageButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const lang = this.getAttribute('data-lang');
-                    alert('Idioma seleccionado: ' + lang);
-                });
-            });
+        // Contenido para cambiar el idioma
+        const languageContent = {
+            es: {
+                candidate1: "Candidato 1",
+                candidate2: "Candidato 2",
+                candidate3: "Candidato 3",
+                resultText: "Has seleccionado: "
+            },
+            en: {
+                candidate1: "Candidate 1",
+                candidate2: "Candidate 2",
+                candidate3: "Candidate 3",
+                resultText: "You have selected: "
+            }
+        };
 
-            // Evento para seleccionar candidatos
-            candidates.forEach(candidate => {
-                candidate.addEventListener('click', function() {
-                    resultDiv.textContent = 'Candidato seleccionado: ' + this.textContent;
-                });
+        // Seleccionar elementos
+        const languageButtons = document.querySelectorAll('.language-button');
+        const candidates = document.querySelectorAll('.candidate');
+        const resultContainer = document.querySelector('.candidate-result');
+
+        // Funcionalidad para cambiar el idioma
+        languageButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                const lang = e.target.getAttribute('data-lang');
+                // Cambiar el contenido según el idioma seleccionado
+                document.querySelector('.candidate:nth-child(1)').textContent = languageContent[lang].candidate1;
+                document.querySelector('.candidate:nth-child(2)').textContent = languageContent[lang].candidate2;
+                document.querySelector('.candidate:nth-child(3)').textContent = languageContent[lang].candidate3;
+                resultContainer.textContent = languageContent[lang].resultText;
+            });
+        });
+
+        // Funcionalidad para mostrar el resultado del candidato
+        candidates.forEach(candidate => {
+            candidate.addEventListener('click', () => {
+                const candidateName = candidate.textContent;
+                resultContainer.classList.add('show');
+                resultContainer.textContent = 'Has seleccionado: ' + candidateName;
+
+                // Limpiar resultado después de 3 segundos
+                setTimeout(() => {
+                    resultContainer.classList.remove('show');
+                }, 3000);
             });
         });
     </script>
