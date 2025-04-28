@@ -1,177 +1,115 @@
+mkdir -p conclave2.0/assets/css conclave2.0/assets/js
+touch conclave2.0/index.html conclave2.0/assets/css/styles.css conclave2.0/assets/js/main.js
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto</title>
-    <!-- Estilos CSS integrados -->
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 100%);
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Contenedor principal */
-        .container {
-            display: grid;
-            grid-template-columns: 1fr 1.8fr;
-            gap: 20px;
-            padding: 20px;
-        }
-
-        /* Columna izquierda */
-        .left-column {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Columna derecha */
-        .right-column {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Botones de idioma */
-        .language-button {
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .language-button:hover {
-            background-color: #0056b3;
-        }
-
-        /* Contenedor de candidatos */
-        .candidate-container {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .candidate {
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .candidate:hover {
-            background-color: #e9ecef;
-        }
-
-        /* Estilo para el resultado del candidato */
-        .candidate-result {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border-radius: 5px;
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .candidate-result.show {
-            display: block;
-            opacity: 1;
-        }
-
-        /* Responsividad */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: 1fr;
-            }
-
-            .left-column, .right-column {
-                padding: 10px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Proyecto</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Contenido de la izquierda -->
-        <div class="left-column">
-            <!-- Botones de idioma -->
-            <button class="language-button" data-lang="es">Español</button>
-            <button class="language-button" data-lang="en">Inglés</button>
-        </div>
-
-        <!-- Contenido de la derecha -->
-        <div class="right-column">
-            <div class="candidate-container">
-                <div class="candidate" data-candidate="1">Candidato 1</div>
-                <div class="candidate" data-candidate="2">Candidato 2</div>
-                <div class="candidate" data-candidate="3">Candidato 3</div>
-            </div>
-            <div class="candidate-result"></div>
-        </div>
+  <div class="container">
+    <div class="left-column">
+      <h2>Idiomas</h2>
+      <button class="language-button" data-lang="es">Español</button>
+      <button class="language-button" data-lang="en">Inglés</button>
     </div>
-
-    <!-- Script JS integrado -->
-    <script>
-        // Contenido para cambiar el idioma
-        const languageContent = {
-            es: {
-                candidate1: "Candidato 1",
-                candidate2: "Candidato 2",
-                candidate3: "Candidato 3",
-                resultText: "Has seleccionado: "
-            },
-            en: {
-                candidate1: "Candidate 1",
-                candidate2: "Candidate 2",
-                candidate3: "Candidate 3",
-                resultText: "You have selected: "
-            }
-        };
-
-        // Seleccionar elementos
-        const languageButtons = document.querySelectorAll('.language-button');
-        const candidates = document.querySelectorAll('.candidate');
-        const resultContainer = document.querySelector('.candidate-result');
-
-        // Funcionalidad para cambiar el idioma
-        languageButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
-                const lang = e.target.getAttribute('data-lang');
-                // Cambiar el contenido según el idioma seleccionado
-                document.querySelector('.candidate:nth-child(1)').textContent = languageContent[lang].candidate1;
-                document.querySelector('.candidate:nth-child(2)').textContent = languageContent[lang].candidate2;
-                document.querySelector('.candidate:nth-child(3)').textContent = languageContent[lang].candidate3;
-                resultContainer.textContent = languageContent[lang].resultText;
-            });
-        });
-
-        // Funcionalidad para mostrar el resultado del candidato
-        candidates.forEach(candidate => {
-            candidate.addEventListener('click', () => {
-                const candidateName = candidate.textContent;
-                resultContainer.classList.add('show');
-                resultContainer.textContent = 'Has seleccionado: ' + candidateName;
-
-                // Limpiar resultado después de 3 segundos
-                setTimeout(() => {
-                    resultContainer.classList.remove('show');
-                }, 3000);
-            });
-        });
-    </script>
+    <div class="right-column">
+      <h2>Candidatos</h2>
+      <div class="candidate-container">
+        <div class="candidate">Candidato 1</div>
+        <div class="candidate">Candidato 2</div>
+        <div class="candidate">Candidato 3</div>
+      </div>
+      <div class="candidate-result"></div>
+    </div>
+  </div>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 100%);
+  margin: 0;
+  padding: 0;
+}
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+.left-column, .right-column {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button.language-button {
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button.language-button:hover {
+  background-color: #cbd5e1;
+}
+
+.candidate-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.candidate {
+  padding: 10px 15px;
+  background-color: #f1f5f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.candidate:hover {
+  background-color: #cbd5e1;
+}
+
+.candidate-result {
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+}
+document.addEventListener("DOMContentLoaded", () => {
+  const candidates = document.querySelectorAll(".candidate");
+  const resultDiv = document.querySelector(".candidate-result");
+  const languageButtons = document.querySelectorAll(".language-button");
+
+  candidates.forEach(candidate => {
+    candidate.addEventListener("click", () => {
+      resultDiv.textContent = `Has seleccionado: ${candidate.textContent}`;
+      resultDiv.style.opacity = 0;
+      setTimeout(() => {
+        resultDiv.style.opacity = 1;
+      }, 200);
+    });
+  });
+
+  languageButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      languageButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+    });
+  });
+});
