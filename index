@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto</title>
+    <!-- Enlace al archivo CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Contenido de la izquierda -->
+        <div class="left-column">
+            <!-- Aquí podrías tener los botones de idioma -->
+            <button class="language-button" data-lang="es">Español</button>
+            <button class="language-button" data-lang="en">Inglés</button>
+        </div>
+
+        <!-- Contenido de la derecha -->
+        <div class="right-column">
+            <div class="candidate-container">
+                <div class="candidate">Candidato 1</div>
+                <div class="candidate">Candidato 2</div>
+                <div class="candidate">Candidato 3</div>
+            </div>
+            <div class="candidate-result"></div>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JS -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
