@@ -1,19 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto</title>
-    <!-- Enlace al CSS externo -->
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- Estilos CSS integrados -->
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #f0f4f8 0%, #e2e8f0 100%);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Contenedor principal */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Columna izquierda */
+        .left-column {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Columna derecha */
+        .right-column {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botones de idioma */
+        .language-button {
+            background-color: #008CBA;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .language-button:hover {
+            background-color: #005f6b;
+        }
+
+        /* Contenedor de candidatos */
+        .candidate-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Resultados de candidatos */
+        .candidate-result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
 </head>
-<script src="assets/js/main.js"></script>
 <body>
     <div class="container">
         <!-- Contenido de la izquierda -->
         <div class="left-column">
-            <!-- Aquí podrías tener los botones de idioma -->
+            <!-- Botones de idioma -->
             <button class="language-button" data-lang="es">Español</button>
             <button class="language-button" data-lang="en">Inglés</button>
         </div>
@@ -29,7 +91,29 @@
         </div>
     </div>
 
-    <!-- Enlace al archivo JS -->
-    <script src="assets/js/main.js"></script>
+    <!-- Script JS integrado -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageButtons = document.querySelectorAll('.language-button');
+            const candidates = document.querySelectorAll('.candidate');
+            const resultDiv = document.querySelector('.candidate-result');
+            
+            // Evento para cambiar el idioma
+            languageButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const lang = this.getAttribute('data-lang');
+                    alert('Idioma seleccionado: ' + lang);
+                });
+            });
+
+            // Evento para seleccionar candidatos
+            candidates.forEach(candidate => {
+                candidate.addEventListener('click', function() {
+                    resultDiv.textContent = 'Candidato seleccionado: ' + this.textContent;
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+
