@@ -1,11 +1,9 @@
-mkdir -p conclave2.0/assets/css conclave2.0/assets/js
-touch conclave2.0/index.html conclave2.0/assets/css/styles.css conclave2.0/assets/js/main.js
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Proyecto</title>
+  <title>Conclave 2.0</title>
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -34,21 +32,18 @@ body {
   margin: 0;
   padding: 0;
 }
-
 .container {
   display: grid;
   grid-template-columns: 1fr 1.8fr;
   gap: 20px;
   padding: 20px;
 }
-
 .left-column, .right-column {
   background-color: #ffffff;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-
 button.language-button {
   margin: 5px;
   padding: 10px;
@@ -58,17 +53,14 @@ button.language-button {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 button.language-button:hover {
   background-color: #cbd5e1;
 }
-
 .candidate-container {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .candidate {
   padding: 10px 15px;
   background-color: #f1f5f9;
@@ -76,16 +68,13 @@ button.language-button:hover {
   border-radius: 6px;
   cursor: pointer;
 }
-
 .candidate:hover {
   background-color: #cbd5e1;
 }
-
 .candidate-result {
   margin-top: 20px;
   font-weight: bold;
 }
-
 @media (max-width: 768px) {
   .container {
     grid-template-columns: 1fr;
@@ -102,13 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
       resultDiv.style.opacity = 0;
       setTimeout(() => {
         resultDiv.style.opacity = 1;
-      }, 200);
+      }, 100);
     });
   });
 
   languageButtons.forEach(button => {
     button.addEventListener("click", () => {
-      languageButtons.forEach(btn => btn.classList.remove("active"));
+      languageButtons.forEach(b => b.classList.remove("active"));
       button.classList.add("active");
     });
   });
